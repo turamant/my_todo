@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    Посмотреть список задач или пометить о выполнении: <a href="{% url 'list' %}">ToDoList</a>
+{% if user.is_authenticated %}
+  Welcome, {{ user.email }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>Для добавоения, редактирования, удаления надо залогиниться</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}ToDo{% endblock %}
+{% block content %}
+<div class="center-column">
+<h2>ToDo</h2>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.title }}
+    <input class="btn btn-info" type="submit" value="Создать задачу">
+</form>
+    <div class="todo-list">
+    {% for task in tasks %}
+    <div class="item-row">
+        <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Изменить задачу</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Удалить задачу</a>
+
+        {% if task.complete == True %}
+        <strike>{{ task }}</strike>
+        {% else %}
+        <span>{{ task }}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
