@@ -3,26 +3,26 @@
     {% block title %}ToDo{% endblock %}
 {% block content %}
 <div class="center-column">
-{% if user.is_authenticated %}
-<a class="btn btn-sm btn-info" href="{% url 'create' %}">Создать задачу</a>
-{% endif %}
-     {% for task in object_list %}
+    <p><a class="mip" href="{% url 'home' %}"><-назад</a></p>
+    {% if user.is_authenticated %}
+    <a class="btn btn-sm btn-info" href="{% url 'create' %}">Создать задачу</a>
+    {% endif %}
+  {% for task in object_list %}
     <div class="item-row">
-        {% if user.is_authenticated %}
+         {% if task.complete == True %}
+            <strike><p>Задача: {{ task.title }}.</p></strike>
+                атор: {{ task.user }},
+                дата: {{ task.created }}.
+        {% else %}
+            <span><p>Задача: {{ task.title }}.</p></span>
+              автор: {{ task.user }},
+              создана: {{ task.created }}.
+        {% endif %}
+           {% if user.is_authenticated %}
         <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Изменить задачу</a>
         <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Удалить задачу</a>
         {% endif %}
-        {% if task.complete == True %}
-        <strike>{{ task.title }}</strike>
-                {{ task.user }}
-                {{ task.created }}
-        {% else %}
-        <span>{{ task.title }}</span>
-              {{ task.user }}
-              {{ task.created }}
-        {% endif %}
     </div>
-    {% endfor %}
-    </div>
+  {% endfor %}
 </div>
 {% endblock %}

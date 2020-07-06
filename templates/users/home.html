@@ -3,11 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    Посмотреть список задач или пометить о выполнении: <a href="{% url 'list' %}">ToDoList</a>
+    Посмотреть список задач: <a href="{% url 'list' %}">ToDoList</a>
 {% if user.is_authenticated %}
-  Welcome, {{ user.email }}!
+    <p>Добро пожаловать юзер:  {{ user.email }}!</p>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %}
+  {% else %}
   <p>Для добавоения, редактирования, удаления надо залогиниться</p>
   <a href="{% url 'login' %}">Log In</a> |
   <a href="{% url 'signup' %}">Sign Up</a>

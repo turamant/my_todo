@@ -4,6 +4,7 @@
 
 {% block content %}
 <h2>Sign Up</h2>
+    <p><a class="mip" href="{% url 'home' %}"><-назад</a></p>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}

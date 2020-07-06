@@ -3,6 +3,7 @@
 {% block title %}Log In{% endblock %}
 
 {% block content %}
+     <p><a class="mip" href="{% url 'home' %}"><-назад</a></p>
 <h2>Log In</h2>
 <form method="post">
   {% csrf_token %}
